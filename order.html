@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформлення замовлення | L-TEX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: #28a745;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: #20c997;
+        }
+        
+        .order-form {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .form-title {
+            font-size: 1.8rem;
+            color: #28a745;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            border-bottom: 3px solid #28a745;
+            padding-bottom: 0.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"] {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #28a745;
+        }
+        
+        input[readonly] {
+            background: #e9ecef;
+            cursor: not-allowed;
+        }
+        
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .submit-button:hover {
+            background: linear-gradient(135deg, #218838 0%, #1aa179 100%);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .success-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background: #343a40;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .contacts {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .contacts a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .form-title {
+                font-size: 1.4rem;
+            }
+            
+            .order-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🛍️ Оформлення замовлення</h1>
+        <p>L-TEX | Секонд-хенд оптом з Європи</p>
+    </header>
+
+    <div class="container">
+        <a href="catalog.html" class="back-link">← Повернутися до каталогу</a>
+        
+        <div class="order-form">
+            <h2 class="form-title">Форма замовлення</h2>
+            
+            <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
+                <!-- Web3Forms Access Key -->
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                
+                <!-- Redirect after submission -->
+                <input type="hidden" name="redirect" value="false">
+                
+                <!-- Email recipient -->
+                <input type="hidden" name="from_name" value="L-TEX Замовлення">
+                <input type="hidden" name="subject" value="Нове замовлення з каталогу">
+                
+                <div class="form-group">
+                    <label for="name">ПІБ *</label>
+                    <input type="text" id="name" name="name" required placeholder="Введіть ваше повне ім'я">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Телефон *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+380 XX XXX XXXX">
+                </div>
+                
+                <div class="form-group">
+                    <label for="city">Місто *</label>
+                    <input type="text" id="city" name="city" required placeholder="Введіть ваше місто">
+                </div>
+                
+                <div class="form-group">
+                    <label for="product">Назва товару</label>
+                    <input type="text" id="product" name="product" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="barcode">Штрихкод</label>
+                    <input type="text" id="barcode" name="barcode" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="price">Вартість</label>
+                    <input type="text" id="price" name="price" readonly>
+                </div>
+                
+                <button type="submit" class="submit-button">📤 ВІДПРАВИТИ ЗАМОВЛЕННЯ</button>
+            </form>
+            
+            <div id="successMessage" class="success-message">
+                <div class="success-icon">✅</div>
+                <p>Замовлення успішно відправлено!</p>
+                <p>Ми зв'яжемося з вами найближчим часом.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Контакти:</strong></p>
+        <div class="contacts">
+            <a href="tel:+380676710516">📲 +380 67 671 0516</a>
+            <a href="tel:+380993584992">📲 +380 99 358 4992</a>
+        </div>
+        <p style="margin-top: 1rem;">📧 Email: taraskuzenko.ltex@gmail.com</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">© 2025 L-TEX. Оптові поставки секонд-хенду з Європи</p>
+    </footer>
+
+    <script>
+        // Отримання параметрів з URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('product');
+        const barcode = urlParams.get('barcode');
+        const price = urlParams.get('price');
+        
+        // Заповнення полів форми
+        if (productName) {
+            document.getElementById('product').value = productName;
+        }
+        if (barcode) {
+            document.getElementById('barcode').value = barcode;
+        }
+        if (price) {
+            document.getElementById('price').value = price + ' грн';
+        }
+        
+        // Обробка відправки форми (сумісність з iOS)
+        const form = document.getElementById('orderForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            // Вимкнути кнопку під час відправки
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = '⏳ Відправляємо...';
+            }
+            
+            // Використовуємо XMLHttpRequest для кращої сумісності з iOS
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://api.web3forms.com/submit', true);
+            
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    try {
+                        const data = JSON.parse(xhr.responseText);
+                        if (data.success) {
+                            form.style.display = 'none';
+                            successMessage.classList.add('show');
+                            
+                            // Перенаправлення назад до каталогу через 3 секунди
+                            setTimeout(function() {
+                                window.location.href = 'catalog.html';
+                            }, 3000);
+                        } else {
+                            alert('Помилка відправки. Спробуйте ще раз або зв\'яжіться з нами за телефоном.');
+                            if (submitButton) {
+                                submitButton.disabled = false;
+                                submitButton.textContent = '📤 ВІДПРАВИТИ ЗАМОВЛЕННЯ';
+                            }
+                        }
+                    } catch (error) {
+                        alert('Помилка відправки. Спробуйте ще раз або зв\'яжіться з нами за телефоном.');
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                            submitButton.textContent = '📤 ВІДПРАВИТИ ЗАМОВЛЕННЯ';
+                        }
+                    }
+                } else {
+                    alert('Помилка відправки. Спробуйте ще раз або зв\'яжіться з нами за телефоном.');
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = '📤 ВІДПРАВИТИ ЗАМОВЛЕННЯ';
+                    }
+                }
+            };
+            
+            xhr.onerror = function() {
+                alert('Помилка відправки. Спробуйте ще раз або зв\'яжіться з нами за телефоном.');
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = '📤 ВІДПРАВИТИ ЗАМОВЛЕННЯ';
+                }
+            };
+            
+            xhr.send(formData);
+        });
+    </script>
+</body>
+</html>
